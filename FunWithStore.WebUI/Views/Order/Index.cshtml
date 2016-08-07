@@ -1,0 +1,68 @@
+﻿@using FunWithStore.WebUI.HtmlHelpers
+@using FunWithStore.WebUI.Models
+@model OrdersIndexVM
+
+@{
+    ViewBag.Title = "Заказы";
+}
+
+<div class="page-header text-center">
+    <h2>Заказы</h2>
+</div>
+
+<div class="container">
+    <table class="table">
+        <h3>
+            <strong> @Html.ActionLink("Создать заказ для данного покупателя", "Create", "Order")</strong>
+        </h3>
+        <thead>
+        <tr>
+            <th>Номер заказа</th>
+            <th>Описание заказа</th>
+            <th>Стоимость заказа</th>
+            <th>Дата заказа</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var ord in @Model.Orders)
+        {
+            <tr>
+                <td>
+                    <span class="lead">@ord.Number</span>
+                </td>
+
+                <td>
+                    <span class="lead">@ord.Description</span>
+                </td>
+
+                <td>
+                    <span class="lead">@ord.Amount.ToString("# rub")</span>
+                </td>
+
+                <td>
+                    <span class="lead">@ord.Date</span>
+                </td>
+
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new {orderId = ord.Number}) |
+                    @Html.ActionLink("Удалить", "Delete", new {orderId = ord.Number})
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <div>
+        @Html.ActionLink("Назад к списку покупателей", "Index", "Customer", null, null)
+    </div>
+
+    <div class="btn-group pull-right">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+    </div>
+</div>
+
+
+
+
+
+

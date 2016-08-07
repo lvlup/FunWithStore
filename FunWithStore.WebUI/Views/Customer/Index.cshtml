@@ -1,0 +1,51 @@
+﻿@using FunWithStore.WebUI.HtmlHelpers
+@using FunWithStore.WebUI.Models
+@model CustomersIndexVM
+
+@{
+    ViewBag.Title = "Покупатели";
+}
+
+<div class="page-header text-center">
+    <h2>Покупатели</h2>
+</div>
+
+<div class="container">
+    <table class="table">
+        <h3>
+            <strong> @Html.ActionLink("Создать покупателя", "Create", "Customer")</strong>
+        </h3>
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Адрес</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var cust in @Model.Customers)
+        {
+            <tr>
+                <td>
+                    <span class="lead">@cust.Name</span>
+                </td>
+
+                <td>
+                    <span class="lead">@cust.Address</span>
+                </td>
+
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new {customerId = cust.CustomerId}) |
+                    @Html.ActionLink("Удалить", "Delete", new {customerId = cust.CustomerId}) |
+                    @Html.ActionLink("Посмотреть заказы покупателя", "Index", "Order", new {customerId = cust.CustomerId}, null)
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <div class="btn-group pull-right">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+    </div>
+</div>
+
+
