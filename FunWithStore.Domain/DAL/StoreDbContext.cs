@@ -10,7 +10,7 @@ namespace FunWithStore.Domain.DAL
 
         public StoreContext() : base("MyStoreContext")
         {
-            Database.SetInitializer(new StoreDbSchoolDBInitializer());
+            Database.SetInitializer(new StoreDBInitializer());
         }
     }
 }
