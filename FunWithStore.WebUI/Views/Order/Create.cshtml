@@ -37,7 +37,7 @@
     </div>
 }
 <div>
-    @Html.ActionLink("Назад к списку заказов", "Index")
+    @Html.ActionLink("Назад к списку заказов", "Index",new { customerId = @Model.CustomerId},null)
 </div>
 
 

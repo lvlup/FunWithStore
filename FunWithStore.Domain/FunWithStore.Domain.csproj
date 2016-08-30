@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\StoreDbContext.cs" />
-    <Compile Include="DAL\StoreDbSchoolDBInitializer.cs" />
+    <Compile Include="DAL\StoreDBInitializer.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

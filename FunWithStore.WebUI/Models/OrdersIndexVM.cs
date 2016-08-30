@@ -7,5 +7,7 @@ namespace FunWithStore.WebUI.Models
     {
         public IEnumerable<Order> Orders { get; set; }
         public PagingInfo PagingInfo { get; set; }
+
+        public int CustomerId { get; set; }
     }
 }

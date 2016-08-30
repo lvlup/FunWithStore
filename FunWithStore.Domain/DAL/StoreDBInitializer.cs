@@ -5,7 +5,7 @@ using FunWithStore.Domain.Entities;
 
 namespace FunWithStore.Domain.DAL
 {
-   public class StoreDBInitializer : CreateDatabaseIfNotExists<StoreContext>
+   public class StoreDbInitializer : DropCreateDatabaseAlways<StoreContext>
     {
         protected override void Seed(StoreContext context)
         {

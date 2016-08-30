@@ -13,7 +13,7 @@
 <div class="container">
     <table class="table">
         <h3>
-            <strong> @Html.ActionLink("Создать заказ для данного покупателя", "Create", "Order")</strong>
+            <strong> @Html.ActionLink("Создать заказ для данного покупателя", "Create", "Order", new {customerId = @Model.CustomerId},null)</strong>
         </h3>
         <thead>
         <tr>

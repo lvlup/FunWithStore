@@ -21,15 +21,8 @@ namespace FunWithStore.WebUI.Controllers
         }
 
         // GET: Order
-        public ActionResult Index(int? customerId, int page = 1)
+        public ActionResult Index(int customerId, int page = 1)
         {
-            if (customerId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            TempData["customerId"] =  customerId;
-
             OrdersIndexVM model = new OrdersIndexVM()
             {
                 Orders = storeRepository.GetOrders().
@@ -42,27 +35,26 @@ namespace FunWithStore.WebUI.Controllers
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
                     TotalItems = storeRepository.GetCustomers().Count()
-                }
+                },
+                CustomerId = customerId
             };
 
             return View(model);
         }
 
 
-        public ViewResult Create()
+        public ViewResult Create(int customerId)
         {
-            var t = ViewBag.customerId;
-            return View();
+            return View(new Order() {CustomerId = customerId});
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "Amount,Description")]Order order)
+        public ActionResult Create(Order order)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if(order.CustomerId == 0) order.CustomerId = (int)TempData["customerId"];
                     order.Date = DateTime.Now;
 
                     storeRepository.InsertOrder(order);
